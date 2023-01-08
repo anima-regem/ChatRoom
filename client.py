@@ -1,12 +1,14 @@
 import socket
 import threading
+from rich import print
 
 IP_ADDRESS = '127.0.0.1'
 PORT = 55555
 
 server  = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.connect((IP_ADDRESS,PORT))
-nickname = input("Enter your nickname : ")
+print("\n[bold magenta]Enter a nickname :vampire: : [/bold magenta]",end=" ")
+nickname = input()
 
 
 def receive():
@@ -16,7 +18,7 @@ def receive():
             if message == 'NICK':
                 server.send(nickname.encode('ascii'))
             else:
-                print("\n"+message+"\n")
+                print("[bold blue]\n"+message+"[/bold blue]\n")
         except:
             print("Aww Damn, an error!")
             server.close()
